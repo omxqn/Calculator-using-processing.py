@@ -170,9 +170,11 @@ def clear_function():
 
 def mtn(x):
     global more_than_number
+    global sy_inputs
 
     more_than_number = str(more_than_number)
     more_than_number +=str(x)
+    sy_inputs = True
     
     
 def random_color():
@@ -281,7 +283,7 @@ def clicking(x):
             
             inputs = True
             sy_inputs = False
-        elif x == "+" and sy_inputs and  more_than_number != "" :# *
+        elif x == "*" and sy_inputs and  more_than_number != "" :# *
             mtn("*")
             print("* has been added")
             inputs = True
