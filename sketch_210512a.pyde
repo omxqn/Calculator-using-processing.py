@@ -14,6 +14,8 @@ fp = 0
 r = 0
 inputs = True
 sy_inputs = True
+add_point = False
+add_p = True
 def setup():
     size(width,height)
     frameRate(300)
@@ -162,11 +164,12 @@ def clear_function():
     global more_than_number
     global sy_inputs
     global inputs
+    global add_point
     
     inputs = True
     sy_inputs = True
     more_than_number = ""
-
+    add_point = False
 
 def mtn(x):
     global more_than_number
@@ -222,79 +225,120 @@ def clicking(x):
     '''
     global inputs
     global sy_inputs
+    global add_point
+    global more_than_number
+    global add_p
     try:
         x = int(x)
         if x == 0 and inputs:
         
             mtn(0)
             print("0 has been added")
+            if add_p:
+                add_point = True
         elif x == 1 and inputs:
     
             mtn(1)
             print("1 has been added")
+            if add_p:
+                add_point = True
         elif x == 2 and inputs:  
     
             mtn(2)
             print("2 has been added")
+            if add_p:
+                add_point = True
         elif x == 3 and inputs:
         
             mtn(3)
             print("3 has been added")
+            if  add_p:
+                add_point = True
         elif x == 4 and inputs:     
         
             mtn(4)
             print("4 has been added")
+            if add_p:
+                add_point = True
         elif x == 5 and inputs:  
     
             mtn(5)
             print("5 has been added")
+            if add_p:
+                add_point = True
         elif x == 6 and inputs:  
         
             mtn(6)
             print("6 has been added")
+            if add_p:
+                add_point = True
         elif x == 7 and inputs:
     
             mtn(7)
             print("7 has been added")
+            if add_p:
+                add_point = True
         elif x == 8 and inputs:  
     
             mtn(8)
             print("8 has been added")
+            if add_p:
+                add_point = True
         elif x == 9 and inputs: 
     
             mtn(9)
             print("9 has been added")
+            if add_p:
+                add_point = True
             
         print(x)
     except:
-        x = str(x)
-        
+
+
         if x == "+" and sy_inputs and  more_than_number != "" :# +
             mtn("+")
             print("+ has been added")
             inputs = True
             sy_inputs = False
-    
+
+            add_point = True
     
     
         elif x == "-" and sy_inputs and  more_than_number != "" :# -
             mtn("-")
             print("- has been added")
             
+            add_point = True
             inputs = True
             sy_inputs = False
+            
+            
         elif x == "*" and sy_inputs and  more_than_number != "" :# *
             mtn("*")
             print("* has been added")
             inputs = True
             sy_inputs = False
-            
+
+            add_point = True
+
     
         elif x == "/" and sy_inputs and  more_than_number != "" :# /
             mtn("/")
             print("/ has been added")
             inputs = True
             sy_inputs = False
+
+            add_point = True
+
+            
+        elif x == "." and sy_inputs and  more_than_number != ""  and add_point and more_than_number[-1].isdigit():# /
+            mtn(".")
+            print(". has been added")
+            inputs = True
+            sy_inputs = False
+
+            add_point = False
+            add_p = False
             
         elif x == "=":# =
             processor(more_than_number)
@@ -304,68 +348,103 @@ def mouseClicked():
     global more_than_number
     global inputs
     global sy_inputs
+    global add_p
+    global add_point
     print(mouseX,mouseY)
     print(inputs)
     if button(mouseX,mouseY,270,370,385,465) and inputs:#0
         mtn(0)
         print("0 has been added")
+        if  add_p:
+            add_point = True
 
     if button(mouseX,mouseY,160,260,122,203) and inputs:#1
         mtn(1)
         print("1 has been added")
+        if  add_p:
+            add_point = True
         
     if button(mouseX,mouseY,270,370,122,203) and inputs:#2
         mtn(2)
         print("2 has been added")
-        
+        if  add_p:
+            add_point = True
+            
     if button(mouseX,mouseY,380,480,122,203) and inputs:#3
         mtn(3)
         print("3 has been added")
-            
+        if  add_p:
+            add_point = True
+              
     if button(mouseX,mouseY,160,260,211,290) and inputs:#4
         mtn(4)
         print("4 has been added")
-        
+        if  add_p:
+            add_point = True
+            
     if button(mouseX,mouseY,270,370,211,290) and inputs:#5
         mtn(5)
         print("5 has been added")
-        
+        if  add_p:
+            add_point = True
+            
     if button(mouseX,mouseY,380,480,211,290) and inputs:#6
         mtn(6)
         print("6 has been added")
-
+        if  add_p:
+            add_point = True
+            
     if button(mouseX,mouseY,160,260,300,376) and inputs:#7
         mtn(7)
         print("7 has been added")
-        
+        if  add_p:
+            add_point = True
+            
+              
     if button(mouseX,mouseY,270,370,300,376) and inputs:#8
         mtn(8)
         print("8 has been added")
-        
+        if  add_p:
+            add_point = True
+            
+            
     if button(mouseX,mouseY,380,480,300,376) and inputs:#9
         mtn(9)
         print("9 has been added")
-        
+        if  add_p:
+            add_point = True
+            
+            
     if button(mouseX,mouseY,10,110,77,160) and more_than_number != "" and sy_inputs:# +
         mtn("+")
         print("+ has been added")
         inputs = True
         sy_inputs = False
-
-
+        if more_than_number.count(".")!=0:
+            add_point = True
+        else:
+            add_point = False
+    
 
     if button(mouseX,mouseY,10,110,165,245) and more_than_number != "" and sy_inputs:# -
         mtn("-")
         print("- has been added")
         inputs = True
         sy_inputs = False
-
+        if more_than_number.count(".")!=0:
+            add_point = True
+        else:
+            add_point = False
 
     if button(mouseX,mouseY,10,110,253,332) and more_than_number != "" and sy_inputs:# *
         mtn("*")
         print("* has been added")
         inputs = True
         sy_inputs = False
+        if more_than_number.count(".")!=0:
+            add_point = True
+        else:
+            add_point = False
         
 
     if button(mouseX,mouseY,10,110,340,420) and more_than_number != "" and sy_inputs:# /
@@ -373,10 +452,17 @@ def mouseClicked():
         print("/ has been added")
         inputs = True
         sy_inputs = False
-        
+        if more_than_number.count(".")!=0:
+            add_point = True
+        else:
+            add_point = False
 
     if button(mouseX,mouseY,10,110,425,495):# =
         processor(more_than_number)
+        if more_than_number.count(".")==0:
+            add_point = True
+        else:
+            add_point = False
         
 
     if button(mouseX,mouseY,140,240,427,496):# Clear button
